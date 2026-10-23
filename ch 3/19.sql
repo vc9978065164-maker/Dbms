@@ -1,0 +1,13 @@
+
+CREATE OR REPLACE TRIGGER TRG_EMP9_SALARY
+BEFORE INSERT OR UPDATE ON EMP9
+FOR EACH ROW
+BEGIN
+    IF :NEW.SALARY > 50000 THEN
+        RAISE_APPLICATION_ERROR(
+            -20421,
+            'Salary cannot be more than 50,000.'
+        );
+    END IF;
+END;
+/
